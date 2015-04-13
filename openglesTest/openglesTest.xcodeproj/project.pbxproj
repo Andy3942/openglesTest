@@ -14,6 +14,10 @@
 		7EFD1F241ADBB58E00C262F2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EFD1F231ADBB58E00C262F2 /* Images.xcassets */; };
 		7EFD1F271ADBB58E00C262F2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EFD1F251ADBB58E00C262F2 /* LaunchScreen.xib */; };
 		7EFD1F331ADBB58E00C262F2 /* openglesTestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD1F321ADBB58E00C262F2 /* openglesTestTests.m */; };
+		7EFD1F3D1ADBBEC900C262F2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EFD1F3C1ADBBEC800C262F2 /* QuartzCore.framework */; };
+		7EFD1F3F1ADBBEEF00C262F2 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EFD1F3E1ADBBEEF00C262F2 /* OpenGLES.framework */; };
+		7EFD1F411ADBC1AA00C262F2 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7EFD1F401ADBC1AA00C262F2 /* MainWindow.xib */; };
+		7EFD1F461ADBD0A500C262F2 /* OpenGlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EFD1F451ADBD0A500C262F2 /* OpenGlView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,11 @@
 		7EFD1F2C1ADBB58E00C262F2 /* openglesTestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = openglesTestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EFD1F311ADBB58E00C262F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7EFD1F321ADBB58E00C262F2 /* openglesTestTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = openglesTestTests.m; sourceTree = "<group>"; };
+		7EFD1F3C1ADBBEC800C262F2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		7EFD1F3E1ADBBEEF00C262F2 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		7EFD1F401ADBC1AA00C262F2 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		7EFD1F441ADBD0A500C262F2 /* OpenGlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGlView.h; sourceTree = "<group>"; };
+		7EFD1F451ADBD0A500C262F2 /* OpenGlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OpenGlView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +56,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EFD1F3F1ADBBEEF00C262F2 /* OpenGLES.framework in Frameworks */,
+				7EFD1F3D1ADBBEC900C262F2 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +74,8 @@
 		7EFD1F0A1ADBB58D00C262F2 = {
 			isa = PBXGroup;
 			children = (
+				7EFD1F3E1ADBBEEF00C262F2 /* OpenGLES.framework */,
+				7EFD1F3C1ADBBEC800C262F2 /* QuartzCore.framework */,
 				7EFD1F151ADBB58D00C262F2 /* openglesTest */,
 				7EFD1F2F1ADBB58E00C262F2 /* openglesTestTests */,
 				7EFD1F141ADBB58D00C262F2 /* Products */,
@@ -82,6 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				7EFD1F1A1ADBB58D00C262F2 /* AppDelegate.h */,
+				7EFD1F401ADBC1AA00C262F2 /* MainWindow.xib */,
 				7EFD1F1B1ADBB58E00C262F2 /* AppDelegate.m */,
 				7EFD1F1D1ADBB58E00C262F2 /* ViewController.h */,
 				7EFD1F1E1ADBB58E00C262F2 /* ViewController.m */,
@@ -89,6 +103,8 @@
 				7EFD1F231ADBB58E00C262F2 /* Images.xcassets */,
 				7EFD1F251ADBB58E00C262F2 /* LaunchScreen.xib */,
 				7EFD1F161ADBB58D00C262F2 /* Supporting Files */,
+				7EFD1F441ADBD0A500C262F2 /* OpenGlView.h */,
+				7EFD1F451ADBD0A500C262F2 /* OpenGlView.m */,
 			);
 			path = openglesTest;
 			sourceTree = "<group>";
@@ -199,6 +215,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EFD1F411ADBC1AA00C262F2 /* MainWindow.xib in Resources */,
 				7EFD1F221ADBB58E00C262F2 /* Main.storyboard in Resources */,
 				7EFD1F271ADBB58E00C262F2 /* LaunchScreen.xib in Resources */,
 				7EFD1F241ADBB58E00C262F2 /* Images.xcassets in Resources */,
@@ -222,6 +239,7 @@
 				7EFD1F1F1ADBB58E00C262F2 /* ViewController.m in Sources */,
 				7EFD1F1C1ADBB58E00C262F2 /* AppDelegate.m in Sources */,
 				7EFD1F191ADBB58D00C262F2 /* main.m in Sources */,
+				7EFD1F461ADBD0A500C262F2 /* OpenGlView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
