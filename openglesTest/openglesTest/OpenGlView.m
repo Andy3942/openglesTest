@@ -6,17 +6,19 @@
 //  Copyright (c) 2015 bzx. All rights reserved.
 //
 
+#import "GLESUtils.h"
 #import "OpenGlView.h"
 
 // 使用匿名 category 来声明私有成员
 @interface OpenGLView()
 
-    -(void)setupLayer;
-    -(void)setupContext;
+    - (void)setupLayer;
+    - (void)setupContext;
     - (void)setupRenderBuffer;
     - (void)setupFrameBuffer;
     - (void)destoryRenderAndFrameBuffer;
     - (void)render;
+    - (void)setupProgram;
 @end
 
 @implementation OpenGLView : UIView
@@ -78,12 +80,80 @@
     _colorRenderBuffer = 0;
 }
 
+- (void)setupProgram
+{
+    // Load shaders
+    //
+    NSString * vertexShaderPath = [[NSBundle mainBundle] pathForResource:@"VertexShader"
+                                                                  ofType:@"glsl"];
+    NSString * fragmentShaderPath = [[NSBundle mainBundle] pathForResource:@"FragmentShader"
+                                                                    ofType:@"glsl"];
+    GLuint vertexShader = [GLESUtils loadShader:GL_VERTEX_SHADER
+                                   withFilepath:vertexShaderPath]; 
+    GLuint fragmentShader = [GLESUtils loadShader:GL_FRAGMENT_SHADER
+                                     withFilepath:fragmentShaderPath];
+
+    // Create program, attach shaders.
+    _programHandle = glCreateProgram();
+    if (!_programHandle) {
+        NSLog(@"Failed to create program.");
+        return;
+    }
+    
+    glAttachShader(_programHandle, vertexShader);
+    glAttachShader(_programHandle, fragmentShader);
+    
+    // Link program
+    //
+    glLinkProgram(_programHandle);
+    
+    // Check the link status
+    GLint linked;
+    glGetProgramiv(_programHandle, GL_LINK_STATUS, &linked );
+    if (!linked) 
+    {
+        GLint infoLen = 0;
+        glGetProgramiv (_programHandle, GL_INFO_LOG_LENGTH, &infoLen );
+        
+        if (infoLen > 1)
+        {
+            char * infoLog = malloc(sizeof(char) * infoLen);
+            glGetProgramInfoLog (_programHandle, infoLen, NULL, infoLog );
+            NSLog(@"Error linking program:\n%s\n", infoLog );            
+            
+            free (infoLog );
+        }
+        
+        glDeleteProgram(_programHandle);
+        _programHandle = 0;
+        return;
+    }
+    
+    glUseProgram(_programHandle);
+    
+    // Get attribute slot from program
+    //
+    _positionSlot = glGetAttribLocation(_programHandle, "vPosition");
+}
+
 - (void)render {
     glClearColor(0, 1.0, 0, 1.0);
     glClear(GL_COLOR_BUFFER_BIT);
-
+    // Setup viewport
+    glViewport(0, 0, 300, 500);
+    GLfloat vertices[] = {
+        -0.5f, 0.0f, 0.0f,
+        0.5f, 0.0f, 0.0f,
+        0.5f, -0.5f, 0.0f,
+        -0.5f, -0.5f, 0.0f
+    };
     
-
+    // Load the vertex data
+    glVertexAttribPointer(_positionSlot, 3, GL_FLOAT, GL_FALSE, 0, vertices);
+    glEnableVertexAttribArray(_positionSlot);
+    
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    
     [_context presentRenderbuffer:GL_RENDERBUFFER];
 }
 
@@ -102,7 +172,7 @@
     [self setupFrameBuffer];    
 
     
-
+    [self setupProgram];
     [self render];
 
 }
