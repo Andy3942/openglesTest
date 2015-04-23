@@ -142,24 +142,17 @@
     // Setup viewport
     glViewport(0, 0, self.frame.size.width, self.frame.size.height);
     GLfloat vertices[] = {
-        0.5f, 0.5f, 0.0f,
-        0.5f, -0.5f, 0.0f,
-        -0.5f, -0.5f, 0.0f,
-        -0.5f, 0.5f, 0.0f,
-        0.0f, 0.0f, -0.7f,
+        1.0f, 0.0f, 0.0f,
+        1.0f, 1.0f, 0.0f,
+        0.0f, 1.0f, 0.0f,
+        0.0f, 0.0f, 0.0f,
     };
-    
-    GLubyte indices[] = {
-        0, 1, 1, 2, 2, 3, 3, 0,
-        4, 0, 4, 1, 4, 2, 4, 3
-    };
-    
     
     // Load the vertex data
     glVertexAttribPointer(_positionSlot, 3, GL_FLOAT, GL_FALSE, 0, vertices);
     glEnableVertexAttribArray(_positionSlot);
-    
-    glDrawElements(GL_LINES, sizeof(indices) / sizeof(GLubyte), GL_UNSIGNED_BYTE, indices);
+    glDrawArrays(GL_LINE_LOOP, 0, 4);
+    // glDrawElements(GL_LINES, sizeof(indices) / sizeof(GLubyte), GL_UNSIGNED_BYTE, indices);
     
     [_context presentRenderbuffer:GL_RENDERBUFFER];
 }
